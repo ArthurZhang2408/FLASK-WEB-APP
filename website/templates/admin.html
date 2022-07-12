@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %}Admin{% endblock %}
+{% block content %}
+{% for user in users %}
+id: {{ user.id }}<br />
+first name: {{ user.first_name }}<br />
+last name: {{ user.last_name }}<br />
+email: {{ user.email }}<br />
+password: {{ user.password }}<br />
+note: {% for note in user.notes %}
+    {% for text in note.data.split('\n') %}
+    {{ text }}
+    <br />
+    {% endfor %}
+    {{ note.date }}
+    <br />
+    {% endfor %}
+    <br />
+{% endfor %}
+{% endblock %}

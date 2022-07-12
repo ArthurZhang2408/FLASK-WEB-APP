@@ -37,6 +37,15 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
+@auth.route('/admin')
+@login_required
+def admin():
+    if current_user.email != 'arthurzhang2408@hotmail.com':
+        return redirect(url_for('views.home'))
+    
+    return render_template("admin.html", user=current_user, users=User.query.all())
+
+
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if current_user.is_authenticated:
